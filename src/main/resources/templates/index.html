@@ -6,17 +6,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<p class="a1">Таблица погоды</p>
-<table>
-    <tr>
-        <th>День</th>
-        <th>Температура</th>
-    </tr>
-    <div th:each="item : ${current}">
-        <div id="el" th:text="${item}">День</div>
-        <td th:text="${item}">Температура</td>
+<header>
+    <h1>Прогноз погоды для Ульяновска</h1>
+</header>
+<p class="a1">Карточки погоды</p>
+<form th:action="@{/find}" th:object="${search}" method="post">
+    <input type="text" th:field="*{text}">
+    <button type="submit">Найти</button>
+</form>
+<div class="weather-container">
+    <div class="weather-card" th:each="item : ${current}">
+        <div>Temp</div>
+        <div th:text="${item}"></div>
     </div>
-</table>
-
+</div>
+<footer>
+    <p>Автор работы: Антонов</p>
+</footer>
 </body>
 </html>
